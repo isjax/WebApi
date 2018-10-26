@@ -26,15 +26,6 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("CorsPolicy",
-            //        builder => builder.AllowAnyOrigin()
-            //        .AllowAnyMethod()
-            //        .AllowAnyHeader()
-            //        .AllowCredentials());
-            //});
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -49,11 +40,8 @@ namespace WebApi
             {
                 app.UseHsts();
             }
-            //app.UseCors("CorsPolicy");
+
             app.UseCors(builder => builder
-                //.AllowAnyOrigin()
-                //.AllowAnyHeader()
-                //.AllowAnyHeader()
                 .WithOrigins("https://localhost:4000")
                 .AllowCredentials()
                 );
