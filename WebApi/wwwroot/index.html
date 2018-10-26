@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/dundas.embed.min.js"></script>
+</head>
+<body>
+    <h1>Eat Me</h1>
+    <!-- Doesn't work unless it is called from the same origin as dundas bi -->
+    <!--<div class="dundas-bi-embed"
+         data-dundas-bi-url="https://localhost:4000/"
+         data-controller-type="Dashboard"
+         data-file-system-id="bfa14aa2-72f6-4609-be0b-3659361b3aaa">
+    </div>-->
+    <!-- Example 3.1 -->
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function (event) {
+            //dundas.embed.logon.disableWithCredentialsFlag = true;
+            dundas.embed.logon.getLogonToken("https://localhost:4000/", {
+                accountName: "admin",
+                password: "Abcd?1234",
+                isWindowsLogOn: false
+            },
+                function (getLogOnTokenResultData) {
+                    alert(getLogOnTokenResultData.logOnToken);
+                }
+            );
+        });
+    </script>
+    <!-- Example 3.2 -->
+    <!--<div id="dundasBI2"></div>
+    <script>
+        var dundasBIUrl = 'https://localhost:4000/';
+        document.addEventListener("DOMContentLoaded", function (event) {
+            var embedOptions = {
+                dundasBIUrl: dundasBIUrl,
+                controllerType: dundas.embed.ControllerType.DASHBOARD,
+                fileSystemId: "bfa14aa2 - 72f6-4609 - be0b - 3659361b3aaa",
+                viewOptions: dundas.embed.ViewOptions.VIEW_ONLY,
+                parameterValues:[]
+            };
+
+            var dundasApp = dundas.embed.create(document.getElementById("dundasBI2"), embedOptions);
+
+            dundasApp.load();
+
+        });
+    </script>-->
+
+</body>
+</html>
