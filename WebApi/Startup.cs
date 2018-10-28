@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -48,7 +49,15 @@ namespace WebApi
 
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Origin", "https://localhost:4000");
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Credentials", "true");
+                }
+            });
             app.UseMvc();
         }
     }
